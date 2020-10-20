@@ -1,6 +1,10 @@
 # Stocks
 
-A web app -integreted with [Alpha Vantage's](https://www.alphavantage.co/) API- that allows the user to browse the list of stocks in the S&P 500 graph.
+A web app -integrated with [Alpha Vantage's](https://www.alphavantage.co/) API- that allows the user to browse the list of stocks in the S&P 500 graph.
+
+The app uses Django and Django REST to consume data from the API and organize, authenticate, and demonstrate it in the application.
+
+
 
 
 ## Building
