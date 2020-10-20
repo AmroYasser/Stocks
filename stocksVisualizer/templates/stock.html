@@ -1,0 +1,66 @@
+{% load rest_framework %}
+<!DOCTYPE html>
+
+<script src="https://unpkg.com/d3"></script>
+<script src="https://unpkg.com/d3fc"></script>
+
+<html>
+
+<body>
+    <div id="chart-element" style="height: 500px"></div>
+
+</body>
+
+</html>
+<script>
+
+    let data = "{{ stock_prices |safe }}";
+    data = data.replace(/'/g, '"');
+    data = JSON.parse(data)
+    for (stock in data) {
+        data[stock].date = new Date(data[stock].date);
+    }
+
+    const xExtent = fc.extentDate()
+        .accessors([d => d.date]);
+
+    const yExtent = fc.extentLinear()
+        .pad([0.1, 0.1])
+        .accessors([d => d.high, d => d.low]);
+
+    const lineSeries = fc
+        .seriesSvgLine()
+        .mainValue(d => d.high)
+        .crossValue(d => d.date);
+
+    // Area fill
+    const gridlines = fc
+        .annotationSvgGridline()
+        .yTicks(10)
+        .xTicks(10);
+
+    const areaSeries = fc
+        .seriesSvgArea()
+        .baseValue(d => yExtent(data)[0])
+        .mainValue(d => d.high)
+        .crossValue(d => d.date);
+
+
+    const multi = fc.seriesSvgMulti().series([gridlines, lineSeries]);
+
+    const chart = fc
+        .chartCartesian(d3.scaleTime(), d3.scaleLinear())
+        .yOrient("left")
+        .yDomain(yExtent(data))
+        .xDomain(xExtent(data))
+        .svgPlotArea(lineSeries)
+        .svgPlotArea(multi);
+
+
+        console.log(data)
+    d3.select("#chart-element")
+        .datum(data)
+        .call(chart);
+
+
+</script>

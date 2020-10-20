@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load rest_framework %}
+{% block content %}
+    <h2>Companies</h2>
+    {% for company in companies %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2><a href={% url 'stock_prices' %}?symbol=IBM>{{ company.name }}</a></h2>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

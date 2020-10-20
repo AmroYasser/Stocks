@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load rest_framework %}
+{% block content %}
+    <h2>Profile</h2>
+    <h3>username : {{user.username}}</h3>
+    <h3>email : {{user.email}}</h3>
+    <h3>id : {{user.id}}</h3>
+{% endblock content %}
