@@ -9,7 +9,7 @@ The app uses Django and Django REST to consume data from the API and organize, a
 
 ## Building
 
-Use Docker commands as following to build the environment
+Use Docker commands as following to build the image and run the container
 
 ```bash
 docker build -t stocks .
