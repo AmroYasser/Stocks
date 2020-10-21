@@ -1,1 +1,3 @@
 static/admin/* linguist-vendored
+static/rest-framework/* linguist-vendored
+static/rest-framework/js/* linguist-vendored=false
